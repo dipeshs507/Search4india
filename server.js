@@ -14,6 +14,13 @@ require("./db/connection");
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
+app.use(express.static('client/build'))
+
+app.get('*',(req,res)=>{
+
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+
+})
 app.use('/news', newsRouter);
 
 
